@@ -576,6 +576,57 @@ input:focus, select:focus, textarea:focus {
   color: var(--c-text-faint) !important;
 }
 
+/* ---------------- 【PR】アフィリエイト（転職エージェント） ---------------- */
+
+.aff-cta {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 24px 28px 22px;
+  margin-top: 26px;
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+}
+@media (max-width: 640px) { .aff-cta { padding: 20px 18px; } }
+
+/* ステマ規制（景表法）対応：PR 表記は誰の目にも留まる位置・大きさで明示する */
+.aff-label {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 3px 10px;
+  background: var(--c-text);
+  color: var(--c-surface);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.aff-title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+.aff-desc { margin: 0 0 16px; font-size: 13.5px; color: var(--c-text-muted); max-width: 84ch; }
+
+.aff-list { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 12px; }
+.aff-item {
+  padding: 14px 16px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  background: var(--c-surface-2);
+}
+.aff-link {
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--c-accent);
+  text-decoration: none;
+}
+.aff-link:hover { text-decoration: underline; }
+.aff-note { display: block; margin-top: 4px; font-size: 12.5px; color: var(--c-text-muted); }
+.aff-disclaimer { margin: 0; font-size: 11.5px; color: var(--c-text-faint); }
+
 /* ---------------- フッター ---------------- */
 
 .site-footer {
