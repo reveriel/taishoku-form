@@ -725,6 +725,7 @@ input:focus, select:focus, textarea:focus {
   }
 
   .no-print,
+  .page-title,
   .site-header,
   .form-pane,
   .seo,
