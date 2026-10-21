@@ -193,6 +193,16 @@
     optWareki:  { zh: '和暦（令和○年○月○日）', ja: '和暦（令和○年○月○日）' },
     optSeireki: { zh: '西暦（2026年10月12日）', ja: '西暦（2026年10月12日）' },
 
+    legendFormat: { zh: '排版', ja: '書式' },
+    lblFont:      { zh: '字体', ja: '字体' },
+    lblWeight:    { zh: '粗体', ja: '太字' },
+    optMincho:    { zh: '宋体', ja: '明朝体' },
+    optGothic:    { zh: '黑体', ja: 'ゴシック体' },
+    optNormal:    { zh: '常规', ja: '通常' },
+    optBold:      { zh: '加粗', ja: '太字' },
+    helpFormat:   { zh: '字体和粗体会反映到预览与打印结果。保持默认时与以前的外观一致。',
+                    ja: '字体と太字はプレビューと印刷結果に反映されます。既定のままでも従来と同じ見た目です。' },
+
     legendRetire:  { zh: '退職内容', ja: '退職の内容' },
     lblRetireDate: { zh: '退職年月日（离职生效日）', ja: '退職年月日' },
     helpRetireDate: { zh: '写「退職年月日」时，一般用月底或公司规定的离职日。',
@@ -344,6 +354,13 @@
     SELECT_IDS.forEach(function (id) {
       var el = $(id);
       if (el && el.options.length) el.selectedIndex = 0;
+    });
+    // 書式（字体・太字）も既定に戻す
+    document.querySelectorAll('#form input[name="docFont"]').forEach(function (r) {
+      r.checked = (r.value === 'mincho');
+    });
+    document.querySelectorAll('#form input[name="docWeight"]').forEach(function (r) {
+      r.checked = (r.value === 'normal');
     });
   }
 
@@ -538,12 +555,24 @@
     badge.textContent = t('badgeDays') + (n ? '：' + n + '日' : '');
   }
 
+  function applyFormat() {
+    var paper = $('paper');
+    if (!paper) return;
+    var fontEl = document.querySelector('input[name="docFont"]:checked');
+    var weightEl = document.querySelector('input[name="docWeight"]:checked');
+    var font = fontEl ? fontEl.value : 'mincho';
+    paper.classList.toggle('font-mincho', font !== 'gothic');
+    paper.classList.toggle('font-gothic', font === 'gothic');
+    paper.classList.toggle('weight-bold', !!(weightEl && weightEl.value === 'bold'));
+  }
+
   function refresh() {
     var meta = DOC_META[currentType] || DOC_META.taishokutodoke;
     var paper = $('paper');
     var body = $('docBody');
     var render = RENDERERS[currentType] || renderTaishokuTodoke;
 
+    applyFormat();
     if (paper) {
       if (meta.vertical) paper.classList.add('paper--vertical');
       else paper.classList.remove('paper--vertical');

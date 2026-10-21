@@ -275,6 +275,42 @@ body {
   .field-row { grid-template-columns: 1fr; gap: 0; }
 }
 
+/* 書式フィールド（字体・太字）のセグメント */
+.field > .field-label { display: block; margin-bottom: 6px; }
+
+.fmt-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.fmt-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--c-text);
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+
+.fmt-row label:hover { border-color: var(--c-border-strong); }
+
+.fmt-row label:has(input:checked) {
+  color: var(--c-accent);
+  background: var(--c-accent-soft);
+  border-color: var(--c-accent);
+}
+
+.fmt-row input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--c-accent);
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],
@@ -366,6 +402,14 @@ input:focus, select:focus, textarea:focus {
   line-height: 1.9;
   overflow: hidden;
 }
+
+/* 書式: 字体（紙面ルートに class を付与。印刷時もそのまま継承される） */
+.paper.font-mincho { font-family: var(--font-serif); }
+/* 既定の紙面は明朝。ゴシックを選んだときだけ sans に切り替える */
+.paper.font-gothic { font-family: var(--font); }
+
+/* 書式: 太字（紙面全体の基準ウェイト。見出し等の個別指定はそのまま活かす） */
+.paper.weight-bold { font-weight: 700; }
 
 .disclaimer-mini {
   margin: 12px 0 0;

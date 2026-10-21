@@ -228,6 +228,29 @@
           </div>
         </fieldset>
 
+        <!-- ===== 書式（全書式共通） ===== -->
+        <fieldset class="card">
+          <legend data-i18n="legendFormat">書式</legend>
+
+          <div class="field">
+            <span class="field-label" id="fmtFontLabel" data-i18n="lblFont">字体</span>
+            <div class="fmt-row" role="radiogroup" aria-labelledby="fmtFontLabel">
+              <label><input type="radio" name="docFont" value="mincho" checked><span data-i18n="optMincho">明朝体</span></label>
+              <label><input type="radio" name="docFont" value="gothic"><span data-i18n="optGothic">ゴシック体</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="fmtWeightLabel" data-i18n="lblWeight">太字</span>
+            <div class="fmt-row" role="radiogroup" aria-labelledby="fmtWeightLabel">
+              <label><input type="radio" name="docWeight" value="normal" checked><span data-i18n="optNormal">通常</span></label>
+              <label><input type="radio" name="docWeight" value="bold"><span data-i18n="optBold">太字</span></label>
+            </div>
+          </div>
+
+          <p class="help" data-i18n="helpFormat">字体和粗体会反映到预览与打印结果。保持默认时与以前的外观一致。</p>
+        </fieldset>
+
         <!-- ===== 退職届・退職願 ===== -->
         <fieldset class="card doc-group" data-doc="taishokutodoke taishokugan" hidden>
           <legend data-i18n="legendRetire">退職的内容</legend>
