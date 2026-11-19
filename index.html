@@ -119,20 +119,20 @@
       </svg>
       <div class="brand-text">
         <strong data-i18n="brandName">退職届・休暇届 作成ツール</strong>
-        <span data-i18n="tagline">免费・无需注册・浏览器内完成</span>
+        <span data-i18n="tagline">無料・登録不要・ブラウザだけで完結</span>
       </div>
     </div>
 
     <div class="header-actions">
       <button type="button" class="btn btn-ghost" id="langBtn" aria-label="表示言語を切り替える">日本語</button>
-      <button type="button" class="btn btn-ghost" id="sampleBtn" data-i18n="btnSample">一键填入示例</button>
-      <button type="button" class="btn btn-ghost" id="resetBtn" data-i18n="btnReset">清空重填</button>
+      <button type="button" class="btn btn-ghost" id="sampleBtn" data-i18n="btnSample">記入例を入れる</button>
+      <button type="button" class="btn btn-ghost" id="resetBtn" data-i18n="btnReset">リセット</button>
       <button type="button" class="btn btn-primary" id="printBtn">
         <svg viewBox="0 0 20 20" aria-hidden="true" class="ic">
           <path d="M6 7V3h8v4M6 15H4.5A1.5 1.5 0 0 1 3 13.5v-4A1.5 1.5 0 0 1 4.5 8h11A1.5 1.5 0 0 1 17 9.5v4a1.5 1.5 0 0 1-1.5 1.5H14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <rect x="6" y="12" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
         </svg>
-        <span data-i18n="btnPrint">打印 / 保存 PDF</span>
+        <span data-i18n="btnPrint">印刷 / PDF保存</span>
       </button>
     </div>
   </div>
@@ -146,23 +146,23 @@
     <section class="pane form-pane no-print" aria-label="入力フォーム">
 
       <div class="card intro-card">
-        <h2 class="pane-title" data-i18n="formTitle">选择书式，填写字段，生成日文文书</h2>
-        <p class="hint" data-i18n="formHint">左侧填写，右侧实时预览。点「打印 / 保存 PDF」即可打印或存为 PDF。文书内容始终为日文。</p>
+        <h2 class="pane-title" data-i18n="formTitle">書式を選んで入力するだけで、日本語の届出書を作成</h2>
+        <p class="hint" data-i18n="formHint">左側に入力すると右側のプレビューにすぐ反映されます。「印刷 / PDF保存」でA4出力できます。</p>
       </div>
 
       <!-- 書式タイプ切り替え -->
       <div class="card">
         <div class="field-label-row">
-          <span class="field-label" data-i18n="lblDocType">书式类型</span>
-          <span class="req-badge" data-i18n="badgeSwitch">切换即更新预览</span>
+          <span class="field-label" data-i18n="lblDocType">書式タイプ</span>
+          <span class="req-badge" data-i18n="badgeSwitch">切り替えるとプレビューが更新</span>
         </div>
         <div class="doc-tabs" id="docTabs" role="tablist" aria-label="書式タイプ">
-          <button type="button" class="doc-tab" role="tab" data-type="taishokutodoke" aria-selected="true" data-i18n="tabTaishoku">退職届（辞职信）</button>
-          <button type="button" class="doc-tab" role="tab" data-type="taishokugan" aria-selected="false" data-i18n="tabTaishokuGan">退職願（辞职申请）</button>
-          <button type="button" class="doc-tab" role="tab" data-type="kyukatodoke" aria-selected="false" data-i18n="tabKyuka">休暇届（请假条）</button>
+          <button type="button" class="doc-tab" role="tab" data-type="taishokutodoke" aria-selected="true" data-i18n="tabTaishoku">退職届</button>
+          <button type="button" class="doc-tab" role="tab" data-type="taishokugan" aria-selected="false" data-i18n="tabTaishokuGan">退職願</button>
+          <button type="button" class="doc-tab" role="tab" data-type="kyukatodoke" aria-selected="false" data-i18n="tabKyuka">休暇届</button>
           <button type="button" class="doc-tab" role="tab" data-type="chikoku" aria-selected="false" data-i18n="tabChikoku">遅刻・早退届</button>
-          <button type="button" class="doc-tab" role="tab" data-type="jinin" aria-selected="false" data-i18n="tabJinin">辞任届（辞任）</button>
-          <button type="button" class="doc-tab" role="tab" data-type="shimatsusho" aria-selected="false" data-i18n="tabShimatsu">始末書（检讨书）</button>
+          <button type="button" class="doc-tab" role="tab" data-type="jinin" aria-selected="false" data-i18n="tabJinin">辞任届</button>
+          <button type="button" class="doc-tab" role="tab" data-type="shimatsusho" aria-selected="false" data-i18n="tabShimatsu">始末書</button>
         </div>
         <p class="doc-note" id="docNote"></p>
       </div>
@@ -172,23 +172,23 @@
         <!-- ===== 共通項目 ===== -->
         <fieldset class="card">
           <legend>
-            <span data-i18n="legendCommon">共通信息</span>
-            <span class="req-badge" data-i18n="badgeCommon">所有书式共用</span>
+            <span data-i18n="legendCommon">共通項目</span>
+            <span class="req-badge" data-i18n="badgeCommon">すべての書式で共通</span>
           </legend>
 
           <div class="field">
-            <label for="addresseeCompany" data-i18n="lblAddresseeCompany">提出先（公司名・部门）</label>
+            <label for="addresseeCompany" data-i18n="lblAddresseeCompany">提出先（会社名・部署）</label>
             <input type="text" id="addresseeCompany" data-i18n-ph="phAddresseeCompany" placeholder="例：株式会社サンプル">
-            <p class="help" data-i18n="helpAddressee">写给谁。公司名・部门名写在这里，职位和姓名写在下一行。</p>
+            <p class="help" data-i18n="helpAddressee">宛先です。会社名・部署名をここに、役職と氏名を次の行に入力します。</p>
           </div>
 
           <div class="field-row">
             <div class="field">
-              <label for="addresseeTitle" data-i18n="lblAddresseeTitle">提出先（职位）</label>
+              <label for="addresseeTitle" data-i18n="lblAddresseeTitle">提出先（役職）</label>
               <input type="text" id="addresseeTitle" data-i18n-ph="phAddresseeTitle" placeholder="例：代表取締役社長">
             </div>
             <div class="field">
-              <label for="addresseeName" data-i18n="lblAddresseeName">提出先（姓名）</label>
+              <label for="addresseeName" data-i18n="lblAddresseeName">提出先（氏名）</label>
               <input type="text" id="addresseeName" data-i18n-ph="phAddresseeName" placeholder="例：佐藤 一郎">
             </div>
           </div>
@@ -196,19 +196,19 @@
           <div class="field">
             <label for="honorific" data-i18n="lblHonorific">敬称</label>
             <select id="honorific">
-              <option value="様" data-i18n="optSama">様（公司・个人通用）</option>
-              <option value="殿" data-i18n="optDono">殿（正式・上级）</option>
-              <option value="御中" data-i18n="optOnchu">御中（写给公司・部门）</option>
+              <option value="様" data-i18n="optSama">様（会社・個人ともに）</option>
+              <option value="殿" data-i18n="optDono">殿（正式・目上の方向け）</option>
+              <option value="御中" data-i18n="optOnchu">御中（会社・部署宛て）</option>
             </select>
           </div>
 
           <div class="field-row">
             <div class="field">
-              <label for="department" data-i18n="lblDepartment">所属（部门）</label>
+              <label for="department" data-i18n="lblDepartment">所属（部署）</label>
               <input type="text" id="department" data-i18n-ph="phDepartment" placeholder="例：営業部">
             </div>
             <div class="field">
-              <label for="name" data-i18n="lblName">氏名（本人姓名）</label>
+              <label for="name" data-i18n="lblName">氏名</label>
               <input type="text" id="name" data-i18n-ph="phName" placeholder="例：山田 太郎">
             </div>
           </div>
@@ -219,7 +219,7 @@
               <input type="date" id="submitDate">
             </div>
             <div class="field">
-              <label for="dateFormat" data-i18n="lblDateFormat">日期表记</label>
+              <label for="dateFormat" data-i18n="lblDateFormat">日付の表記</label>
               <select id="dateFormat">
                 <option value="wareki" data-i18n="optWareki">和暦（令和○年○月○日）</option>
                 <option value="seireki" data-i18n="optSeireki">西暦（2026年10月12日）</option>
@@ -248,17 +248,17 @@
             </div>
           </div>
 
-          <p class="help" data-i18n="helpFormat">字体和粗体会反映到预览与打印结果。保持默认时与以前的外观一致。</p>
+          <p class="help" data-i18n="helpFormat">字体と太字はプレビューと印刷結果に反映されます。既定のままでも従来と同じ見た目です。</p>
         </fieldset>
 
         <!-- ===== 退職届・退職願 ===== -->
         <fieldset class="card doc-group" data-doc="taishokutodoke taishokugan" hidden>
-          <legend data-i18n="legendRetire">退職的内容</legend>
+          <legend data-i18n="legendRetire">退職の内容</legend>
 
           <div class="field">
-            <label for="retireDate" data-i18n="lblRetireDate">退職年月日（离职生效日）</label>
+            <label for="retireDate" data-i18n="lblRetireDate">退職年月日</label>
             <input type="date" id="retireDate">
-            <p class="help" data-i18n="helpRetireDate">写「退職年月日」时，一般用月底或公司规定的离职日。</p>
+            <p class="help" data-i18n="helpRetireDate">退職年月日は、一般的に月末や会社が指定した日付を記載します。</p>
           </div>
 
           <div class="field">
@@ -274,7 +274,7 @@
               <option value="進学のため"></option>
               <option value="その他"></option>
             </datalist>
-            <p class="help" data-i18n="helpReason">最常用的是「一身上の都合」，可不必写具体原因。</p>
+            <p class="help" data-i18n="helpReason">もっとも一般的なのは「一身上の都合」です。具体的な理由は書かなくて構いません。</p>
           </div>
         </fieldset>
 
@@ -282,18 +282,18 @@
         <fieldset class="card doc-group" data-doc="kyukatodoke" hidden>
           <legend>
             <span data-i18n="legendLeave">休暇の内容</span>
-            <span class="req-badge auto" id="leaveDaysBadge" data-i18n="badgeDays">日数自动计算</span>
+            <span class="req-badge auto" id="leaveDaysBadge" data-i18n="badgeDays">日数を自動計算</span>
           </legend>
 
           <div class="field">
             <label for="leaveType" data-i18n="lblLeaveType">休暇の区分</label>
             <select id="leaveType">
-              <option value="有給休暇" data-i18n="optPaid">有給休暇（带薪假）</option>
-              <option value="無給休暇" data-i18n="optUnpaid">無給休暇（无薪假）</option>
-              <option value="慶弔休暇" data-i18n="optCeleb">慶弔休暇（婚丧假）</option>
-              <option value="特別休暇" data-i18n="optSpecial">特別休暇（特别假）</option>
+              <option value="有給休暇" data-i18n="optPaid">有給休暇</option>
+              <option value="無給休暇" data-i18n="optUnpaid">無給休暇</option>
+              <option value="慶弔休暇" data-i18n="optCeleb">慶弔休暇</option>
+              <option value="特別休暇" data-i18n="optSpecial">特別休暇</option>
               <option value="生理休暇" data-i18n="optMenstrual">生理休暇</option>
-              <option value="介護休暇" data-i18n="optCare">介護休暇（护理假）</option>
+              <option value="介護休暇" data-i18n="optCare">介護休暇</option>
             </select>
           </div>
 
@@ -321,8 +321,8 @@
           <div class="field">
             <label for="eventType" data-i18n="lblEventType">区分</label>
             <select id="eventType">
-              <option value="遅刻" data-i18n="optLate">遅刻（迟到）</option>
-              <option value="早退" data-i18n="optEarly">早退（早退）</option>
+              <option value="遅刻" data-i18n="optLate">遅刻</option>
+              <option value="早退" data-i18n="optEarly">早退</option>
             </select>
           </div>
 
@@ -348,7 +348,7 @@
           <legend data-i18n="legendResign">辞任の内容</legend>
 
           <div class="field">
-            <label for="position" data-i18n="lblPosition">役職（辞任する职位）</label>
+            <label for="position" data-i18n="lblPosition">役職（辞任する役職）</label>
             <input type="text" id="position" data-i18n-ph="phPosition" placeholder="例：取締役副社長">
           </div>
 
@@ -373,7 +373,7 @@
           </div>
 
           <div class="field">
-            <label for="incident" data-i18n="lblIncident">経緯（事情经过）</label>
+            <label for="incident" data-i18n="lblIncident">経緯</label>
             <textarea id="incident" rows="3" data-i18n-ph="phIncident" placeholder="例：令和8年10月5日、納品書の送付を失念し、取引先にご迷惑をおかけしました。"></textarea>
           </div>
 
@@ -393,17 +393,17 @@
           </div>
         </fieldset>
 
-        <p class="form-print-hint no-print" data-i18n="printHint">填好后点右上角「打印 / 保存 PDF」。打印对话框里选择「另存为 PDF」即可保存文件。</p>
+        <p class="form-print-hint no-print" data-i18n="printHint">入力が終わったら右上の「印刷 / PDF保存」を押します。印刷ダイアログで「PDFに保存」を選ぶとPDFファイルとして保存できます。</p>
       </form>
 
-      <p class="privacy no-print" data-i18n="privacy">输入内容不会发送到服务器，全部只在你的浏览器内处理。关闭页面后内容即被丢弃。</p>
+      <p class="privacy no-print" data-i18n="privacy">入力した内容はサーバーに送信されません。すべてお使いのブラウザ内だけで処理されます。</p>
     </section>
 
     <!-- ==================== プレビュー ==================== -->
     <section class="pane preview-pane" aria-label="プレビュー">
       <div class="preview-bar no-print">
         <span class="dot" aria-hidden="true"></span>
-        <span id="pvBarLabel" data-i18n="previewBar">预览（A4・竖排/横排自动切换）</span>
+        <span id="pvBarLabel" data-i18n="previewBar">プレビュー（A4・縦書き／横書き自動切替）</span>
       </div>
 
       <div class="paper-wrap">
@@ -412,7 +412,7 @@
         </div>
       </div>
 
-      <p class="disclaimer-mini no-print" data-i18n="disclaimerMini">※ 本工具是书式参考模板，具体格式以公司/学校规定为准。提交前请确认所属单位的规定。</p>
+      <p class="disclaimer-mini no-print" data-i18n="disclaimerMini">※ 本ツールは書式の参考テンプレートです。正式な書式は会社・学校の規定により異なる場合があります。提出前に所属先の規定をご確認ください。</p>
     </section>
 
   </div>
@@ -421,24 +421,24 @@
   <section class="share-block no-print" id="shareBlock" aria-label="share">
     <p class="share-block-title">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5.5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="M8.3 10.8 15.7 6.7M8.3 13.2l7.4 4.1"/></svg>
-      <span data-i18n="shareTitle">分享这个工具</span>
+      <span data-i18n="shareTitle">このツールをシェアする</span>
     </p>
     <div class="share-row">
       <button class="btn share-btn share-x" id="shareXBtn" type="button" aria-label="X">
         <svg class="share-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.53 3h3.24l-7.08 8.09L22 21h-6.52l-5.11-6.68L4.53 21H1.29l7.57-8.66L1.6 3h6.69l4.62 6.1L17.53 3Zm-1.14 16.06h1.8L7.7 4.85H5.77l10.62 14.21Z"/></svg>
-        <span data-i18n="shareX">分享到 X</span>
+        <span data-i18n="shareX">X で共有</span>
       </button>
       <button class="btn share-btn share-line" id="shareLineBtn" type="button" aria-label="LINE">
         <svg class="share-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.9 3 2.8 6.4 2.8 10.6c0 3.77 3.35 6.93 7.88 7.53.31.07.73.2.83.47.1.24.06.62.03.87l-.13.83c-.04.24-.19.94.82.51 1.01-.42 5.44-3.2 7.42-5.48 1.37-1.47 2.13-2.96 2.13-4.73C21.78 6.4 17.1 3 12 3Z"/></svg>
-        <span data-i18n="shareLine">分享到 LINE</span>
+        <span data-i18n="shareLine">LINE で共有</span>
       </button>
       <button class="btn share-btn share-copy" id="shareCopyBtn" type="button" aria-label="copy link">
         <svg class="share-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.2 13.7a3.6 3.6 0 0 0 5.1 0l2.9-2.9a3.6 3.6 0 0 0-5.1-5.1l-1.4 1.4"/><path d="M13.8 10.3a3.6 3.6 0 0 0-5.1 0l-2.9 2.9a3.6 3.6 0 0 0 5.1 5.1l1.4-1.4"/></svg>
-        <span id="shareCopyLabel" data-i18n="shareCopy">复制链接</span>
+        <span id="shareCopyLabel" data-i18n="shareCopy">リンクをコピー</span>
       </button>
       <button class="btn share-btn share-img" id="shareSaveBtn" type="button" aria-label="save image">
         <svg class="share-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5v11M8 10.5l4 4 4-4"/><path d="M4.5 17.5V19a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-1.5"/></svg>
-        <span id="shareSaveLabel" data-i18n="shareSave">保存图片</span>
+        <span id="shareSaveLabel" data-i18n="shareSave">画像を保存</span>
       </button>
     </div>
     <p class="share-url" id="shareUrlText"></p>
