@@ -304,6 +304,7 @@
 
     updateLeaveBadge();
     updateDocNote();
+    updateDateWarning();
   }
 
   /* ---------------------------------------------------------
@@ -581,6 +582,94 @@
 
     updateLeaveBadge();
     updateDocNote();
+    updateDateWarning();
+  }
+
+
+  /* ---------------------------------------------------------
+     前回入力の保存・復元（この端末内のみ）
+     --------------------------------------------------------- */
+  var PROFILE_KEY = 'taishoku.profile.v1';
+  var profileStore = (function () {
+    try {
+      var k = '__tk_test__';
+      window.localStorage.setItem(k, '1');
+      window.localStorage.removeItem(k);
+      return window.localStorage;
+    } catch (e) { return null; }
+  })();
+  var profileTimer = null;
+
+  function collectProfile() {
+    var form = $('form');
+    if (!form) return null;
+    var data = {};
+    form.querySelectorAll('input, select, textarea').forEach(function (el) {
+      if (!el.id) return;
+      if (el.type === 'date') return;   // 日付は復元しない
+      data[el.id] = (el.type === 'checkbox' || el.type === 'radio') ? el.checked : el.value;
+    });
+    return data;
+  }
+
+  function queueSaveProfile() {
+    if (!profileStore) return;
+    if (profileTimer) clearTimeout(profileTimer);
+    profileTimer = setTimeout(function () {
+      var data = collectProfile();
+      if (!data) return;
+      try { profileStore.setItem(PROFILE_KEY, JSON.stringify({ v: 1, savedAt: new Date().toISOString(), fields: data })); } catch (e) {}
+    }, 500);
+  }
+
+  function restoreProfile() {
+    if (!profileStore) return false;
+    var raw, parsed;
+    try { raw = profileStore.getItem(PROFILE_KEY); } catch (e) { return false; }
+    if (!raw) return false;
+    try { parsed = JSON.parse(raw); } catch (e) { return false; }
+    if (!parsed || parsed.v !== 1 || !parsed.fields) return false;
+    var filled = 0;
+    Object.keys(parsed.fields).forEach(function (id) {
+      var el = $(id);
+      if (!el) return;
+      if (el.type === 'date') return;
+      if (el.type === 'checkbox' || el.type === 'radio') { el.checked = !!parsed.fields[id]; }
+      else { el.value = parsed.fields[id]; filled++; }
+    });
+    return filled > 0;
+  }
+
+  function showProfileHint() {
+    var form = $('form');
+    if (!form || !form.parentNode) return;
+    var bar = document.createElement('div');
+    bar.className = 'profile-hint no-print';
+    bar.innerHTML = '前回入力した内容を復元しました。<button type="button" class="profile-delete" id="profileDelete">保存データを削除</button>';
+    form.parentNode.insertBefore(bar, form);
+    $('profileDelete').addEventListener('click', function () {
+      try { profileStore.removeItem(PROFILE_KEY); } catch (e) {}
+      if (bar.parentNode) bar.parentNode.removeChild(bar);
+    });
+  }
+
+  /* ---------------------------------------------------------
+     退職日の妥当性チェック（提出日から14日未満なら警告）
+     --------------------------------------------------------- */
+  function updateDateWarning() {
+    var warn = $('dateWarning');
+    if (!warn) return;
+    var sub = $('submitDate'), ret = $('retireDate');
+    if (!sub || !ret || !sub.value || !ret.value) { warn.hidden = true; return; }
+    if (currentType !== 'taishokutodoke' && currentType !== 'taishokugan') { warn.hidden = true; return; }
+    var days = Math.round((new Date(ret.value) - new Date(sub.value)) / 86400000);
+    if (days < 14) {
+      warn.hidden = false;
+      warn.textContent = '退職日が提出日から' + (days < 0 ? '過去の日付になっています' : days + '日後です') +
+        '。民法では2週間前までに申し出れば解約できるとされ、就業規則で1か月前と定める会社もあります。提出期限をご確認ください。';
+    } else {
+      warn.hidden = true;
+    }
   }
 
   function setDocType(type) {
@@ -607,6 +696,8 @@
     DEFAULTS.submitDate = todayISO();
     fillForm(DEFAULTS);
 
+    if (restoreProfile()) showProfileHint();
+
     var tabs = $('docTabs');
     if (tabs) {
       tabs.addEventListener('click', function (e) {
@@ -620,6 +711,8 @@
     if (form) {
       form.addEventListener('input', refresh);
       form.addEventListener('change', refresh);
+      form.addEventListener('input', queueSaveProfile);
+      form.addEventListener('change', queueSaveProfile);
     }
 
     var printBtn = $('printBtn');
