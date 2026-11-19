@@ -278,7 +278,7 @@
     phApology:          { zh: '例：このたびは、私の不注意によりご迷惑をおかけし、誠に申し訳ございませんでした。', ja: '例：このたびは、私の不注意によりご迷惑をおかけし、誠に申し訳ございませんでした。' }
   };
 
-  var lang = 'zh';
+  var lang = 'ja';
 
   function t(key) {
     var entry = I18N[key];
@@ -638,7 +638,7 @@
       });
     }
 
-    applyI18n('zh');
+    applyI18n('ja');
     setDocType('taishokutodoke');
   }
 
